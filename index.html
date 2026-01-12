@@ -450,32 +450,8 @@
 
       <!-- تعليمات الإعداد -->
       <div class="instructions">
-        <h3>📝 تعليمات إعداد Supabase:</h3>
-        <ol>
-          <li><strong>إنشاء المشروع:</strong> اذهب إلى supabase.com وأنشئ مشروع جديد</li>
-          <li><strong>إنشاء الجدول:</strong> في SQL Editor، انسخ والصق:
-            <ul>
-              <li>CREATE TABLE locations (</li>
-              <li>&nbsp;&nbsp;id BIGSERIAL PRIMARY KEY,</li>
-              <li>&nbsp;&nbsp;latitude FLOAT8 NOT NULL,</li>
-              <li>&nbsp;&nbsp;longitude FLOAT8 NOT NULL,</li>
-              <li>&nbsp;&nbsp;created_at TIMESTAMPTZ DEFAULT NOW()</li>
-              <li>);</li>
-            </ul>
-          </li>
-          <li><strong>تعطيل الحماية:</strong> نفذ هذا الأمر:
-            <ul>
-              <li>ALTER TABLE locations DISABLE ROW LEVEL SECURITY;</li>
-            </ul>
-          </li>
-          <li><strong>نسخ المفاتيح:</strong> من Settings → API، انسخ:
-            <ul>
-              <li>Project URL</li>
-              <li>anon public key</li>
-            </ul>
-          </li>
-          <li><strong>تحديث الكود:</strong> استبدل المفاتيح في السطر 295-296 أدناه</li>
-        </ol>
+        
+       
       </div>
     </div>
 
